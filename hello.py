@@ -1,12 +1,13 @@
-from flask import Flask
+from flask import Flask, make_response
 from flask import request
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    user_agent = request.headers.get('User-Agent')
-    return '<p>Your browser is %s</p' % user_agent
+    response = make_response('<h1>This document carries a cookie!</h1>')
+    response.set_cookie('answer', '42')
+    return response
 
 
 if __name__ == '__main__':
